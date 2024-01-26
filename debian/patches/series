@@ -2,4 +2,3 @@
 0002-Fix-sparc64-support-in-wordsize-checking.patch
 0003-Fix-wordsize-detection-for-riscv64-architecture.patch
 0004-Fix-wordsize-detection-for-x32-architecture.patch
-0004-Fix-wordsize-for-sw64-architecture.patch
