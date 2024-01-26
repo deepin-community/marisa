@@ -15,7 +15,7 @@ Build-Depends:
  ruby,
  ruby-dev,
  swig,
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Rules-Requires-Root: no
 Homepage: https://github.com/s-yata/marisa-trie
 Vcs-Browser: https://salsa.debian.org/input-method-team/marisa
@@ -95,7 +95,7 @@ Architecture: any
 Multi-Arch: foreign
 Depends:
  libmarisa0 (= ${binary:Version}),
- ruby,
+ ruby (>= ${ruby:Build-Version}),
  ${misc:Depends},
  ${shlibs:Depends},
 Description: Ruby bindings for MARISA
