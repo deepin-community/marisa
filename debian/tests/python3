@@ -3,4 +3,8 @@
 set -e
 
 echo "=== python3 ==="
-python3 bindings/python/sample.py
+
+# See https://bugs.debian.org/1061809
+cp bindings/python/sample.py $AUTOPKGTEST_TMP/.
+cd $AUTOPKGTEST_TMP
+python3 sample.py
