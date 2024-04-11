@@ -1,14 +1,91 @@
-marisa (0.2.6.1-1+dde) UNRELEASED; urgency=medium
+marisa (0.2.6-17) unstable; urgency=medium
 
-  * update
+  * Really fix #1065467.
 
- -- Debian Input Method Team <debian-input-method@lists.debian.org>  Mon, 30 May 2022 10:19:13 +0800
+ -- Boyuan Yang <byang@debian.org>  Tue, 12 Mar 2024 10:46:31 -0400
 
-marisa (0.2.6.1-1+dde) unstable; urgency=medium
+marisa (0.2.6-16) unstable; urgency=medium
 
-  * Fix sw64 wordsize.
+  * debian/patches/0005-Add-wordsize-detection-for-LoongArch64.patch:
+    Add proposed patch to fix FTBFS on LoongArch64. (Closes: #1065467)
 
- -- Zhang FeiLong <zhangfeilong@uniontech.com>  Mon, 16 May 2022 15:40:55 +0800
+ -- Boyuan Yang <byang@debian.org>  Mon, 11 Mar 2024 20:18:03 -0400
+
+marisa (0.2.6-15) unstable; urgency=medium
+
+  [ Matthias Klose ]
+  * debian/tests/python3: Run the python3 autopkg test in $AUTOPKGTEST_TMP.
+    This fixes the autopkgtest regression with python3.12.
+    (Closes: #1061809)
+
+ -- Boyuan Yang <byang@debian.org>  Mon, 12 Feb 2024 19:01:55 -0500
+
+marisa (0.2.6-14) unstable; urgency=medium
+
+  * Team upload
+
+  [ Janitor ]
+  * Set upstream metadata fields:
+    - Bug-Database, Bug-Submit, Repository-Browse.
+  * Set upstream metadata fields: Repository.
+
+  [ Gunnar Hjalmarsson ]
+  * Allow one to build twice (closes: #1047554, #1049679)
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Thu, 17 Aug 2023 16:20:59 +0200
+
+marisa (0.2.6-13) unstable; urgency=medium
+
+  * Drop version requirement on ruby since ruby3.1 transition in
+    Debian has concluded. (LP: #1999550)
+  * debian/control: Bump Standards-Version to 4.6.2.
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 27 Jan 2023 20:19:12 -0500
+
+marisa (0.2.6-12) unstable; urgency=high
+
+  * Force rebuild against ruby3.1 to avoid unreasonable autopkgtest
+    regression. (Closes: #1025889)
+  * debian/source/lintian-overrides: Updated.
+
+ -- Boyuan Yang <byang@debian.org>  Sun, 11 Dec 2022 15:56:57 -0500
+
+marisa (0.2.6-11) unstable; urgency=medium
+
+  * Team upload
+  * debian/libmarisa0.symbols:
+    - Update other archs for LTO using buildd logs (closes: #1015539)
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Sat, 23 Jul 2022 15:30:13 +0200
+
+marisa (0.2.6-10) unstable; urgency=medium
+
+  * Team upload
+  * Start fixing FTBFS with LTO enabled (see bug 1015539):
+    - debian/rules: Enable LTO
+    - create symbols file for amd64 only
+  * Bump Standards-Version to 4.6.1
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Sat, 23 Jul 2022 01:16:20 +0200
+
+marisa (0.2.6-9) unstable; urgency=high
+
+  * debian/control: Restrict ruby version requirement to build-time
+    ruby version using custom "ruby (>= ${ruby:Build-Version})" substvar
+    to circumvent regression during ruby3.0-default transition.
+    (Closes: #1006289)
+  * debian/libmarisa0.symbols: Drop some disappeared optional symbols.
+
+ -- Boyuan Yang <byang@debian.org>  Wed, 23 Feb 2022 02:35:04 -0500
+
+marisa (0.2.6-8) unstable; urgency=medium
+
+  * Team upload
+  * debian/libmarisa0.symbols:
+    - Added some "optional" to make it build without changes on
+      Ubuntu's ppc64el.
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Fri, 17 Dec 2021 17:59:13 +0100
 
 marisa (0.2.6-7) unstable; urgency=high
 
