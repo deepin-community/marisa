@@ -1,3 +1,9 @@
+marisa (0.2.6.1-1+deepin18) unstable; urgency=medium
+
+  * update version for rebuild.
+
+ -- liujianqiang <liujianqiang@uniontech.com>  Tue, 10 Jun 2025 15:48:03 +0800
+
 marisa (0.2.6.1-1+deepin17) unstable; urgency=medium
 
   * No source change upload to avoid downgrade.
