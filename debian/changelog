@@ -1,3 +1,9 @@
+marisa (0.2.6.1-1+deepin19) unstable; urgency=medium
+
+  * add wordsize detection for sw64.
+
+ -- liujianqiang <liujianqiang@uniontech.com>  Wed, 11 Jun 2025 13:48:48 +0800
+
 marisa (0.2.6.1-1+deepin18) unstable; urgency=medium
 
   * update version for rebuild.

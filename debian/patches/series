@@ -3,3 +3,4 @@
 0003-Fix-wordsize-detection-for-riscv64-architecture.patch
 0004-Fix-wordsize-detection-for-x32-architecture.patch
 0005-Add-wordsize-detection-for-LoongArch64.patch
+0006-Add-wordsize-detection-for-sw64.patch
