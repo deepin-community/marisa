@@ -1,0 +1,21 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Tue, 16 Sep 2025 17:49:29 -0400
+Subject: Bump SOVERSION to 1
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b6fa9a0..e0acd2d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -199,7 +199,7 @@ target_include_directories(marisa
+ )
+ set_target_properties(marisa PROPERTIES
+   VERSION "${Marisa_VERSION}"
+-  SOVERSION "${Marisa_VERSION_MAJOR}"
++  SOVERSION "1"
+ )
+ configure_target_from_options(marisa)
+ add_native_code(marisa)

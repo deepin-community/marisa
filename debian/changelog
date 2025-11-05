@@ -1,20 +1,46 @@
-marisa (0.2.6.1-1+deepin19) unstable; urgency=medium
+marisa (0.3.1+git20250817-1) unstable; urgency=medium
 
-  * add wordsize detection for sw64.
+  * Upload to unstable.
 
- -- liujianqiang <liujianqiang@uniontech.com>  Wed, 11 Jun 2025 13:48:48 +0800
+ -- Boyuan Yang <byang@debian.org>  Thu, 25 Sep 2025 10:02:27 -0400
 
-marisa (0.2.6.1-1+deepin18) unstable; urgency=medium
+marisa (0.3.1+git20250817-1~exp2) experimental; urgency=medium
 
-  * update version for rebuild.
+  * debian/patches/0005-tests-Fix-double-value-comparison-error-on-i386.patch:
+    Fix test errors on i386.
 
- -- liujianqiang <liujianqiang@uniontech.com>  Tue, 10 Jun 2025 15:48:03 +0800
+ -- Boyuan Yang <byang@debian.org>  Tue, 23 Sep 2025 09:10:40 -0400
 
-marisa (0.2.6.1-1+deepin17) unstable; urgency=medium
+marisa (0.3.1+git20250817-1~exp1) experimental; urgency=medium
 
-  * No source change upload to avoid downgrade.
+  * New upstream version 0.3.1+git20250817.
+  * debian/control: Move package description to source package section.
+  * debian/rules: Migrate to bindings/python3 and cmake.
+  * debian/patches: Rework on all patches:
+    - 0002-0005-Fix-wordsize-*.patch: Dropped, upstream has migrated away from
+      autotools.
+    + 0002-Do-not-build-legacy-python2-bindings.patch: Added.
+    + 0001-Specify-python-module-version-for-litian4py-warning.patch: Updated.
+    + 0003-CMakeLists.txt-Enforce-global-PIC.patch: Globally enable
+      CMAKE_POSITION_INDEPENDENT_CODE flag.
 
- -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 12 Apr 2024 15:17:12 +0800
+ -- Boyuan Yang <byang@debian.org>  Tue, 16 Sep 2025 17:13:28 -0400
+
+marisa (0.2.6-19) unstable; urgency=medium
+
+  * debian/control: Add build-dependency to perl-xs-dev.
+    (Closes: #1102831)
+
+ -- Boyuan Yang <byang@debian.org>  Sat, 12 Apr 2025 20:15:58 -0400
+
+marisa (0.2.6-18) unstable; urgency=medium
+
+  * debian/control: Add missing build-dependency python3-setuptools.
+    (Closes: #1080673)
+  * debian/control: Use build-dependency dh-sequence-pkgkde-symbolshelper.
+  * debian/rules: Drop --with pkgkde-symbolshelper accordingly.
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 05 Sep 2024 17:22:59 -0400
 
 marisa (0.2.6-17) unstable; urgency=medium
 

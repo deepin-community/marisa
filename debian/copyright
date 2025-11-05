@@ -4,8 +4,8 @@ Upstream-Contact: Susumu Yata <susumu.yata@gmail.com>
 Source: https://github.com/s-yata/marisa-trie
 
 Files: *
-Copyright: 2010 - 2018 Susumu Yata <susumu.yata@gmail.com>
-License: BSD-2-clause or LGPL-2.1+
+Copyright: 2010 - 2025 Susumu Yata <susumu.yata@gmail.com>
+License: BSD-2-clause or LGPL-2.1-or-later
  libmarisa and its command line tools are dual-licensed under the BSD 2-clause license and the LGPL.
  .
  * The BSD 2-clause license
@@ -36,14 +36,13 @@ License: BSD-2-clause or LGPL-2.1+
  Lesser General Public License for more details.
  .
  You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ License along with this library; if not, see <https://www.gnu.org/licenses/>
 
 Files: debian/*
 Copyright:
  2013 Mitsuya Shibata <mty.shibata@gmail.com>
  2018 Boyuan Yang <073plan@gmail.com>
-License: GPL-2+
+License: GPL-2.0-or-later
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or

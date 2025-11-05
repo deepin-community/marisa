@@ -1,0 +1,21 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Tue, 16 Sep 2025 17:09:47 -0400
+Subject: CMakeLists.txt: Enforce global PIC
+
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b96374e..b6fa9a0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -13,6 +13,8 @@ option(ENABLE_GPERFTOOLS_PROFILER "Find and link gperftools profiler" OFF)
+ option(ENABLE_COVERAGE "Enable code coverage instrumentation (only enabled with BUILD_TESTING)" OFF)
+ option(ENABLE_STATIC_STDLIB "Link C++ stdlib statically" OFF)
+ 
++set(CMAKE_POSITION_INDEPENDENT_CODE ON)
++
+ include(GNUInstallDirs)
+ set(LIB_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}" CACHE PATH "")
+ 

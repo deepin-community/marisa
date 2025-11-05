@@ -27,45 +27,46 @@ PERL_VENDOR_ARCH=$(shell perl -V:vendorarch|cut -d\' -f2)
 
 
 %:
-	dh $@  --with pkgkde_symbolshelper
+	dh $@
 
+# We do not use bindings/python, see https://github.com/s-yata/marisa-trie/issues/55
+# -DCMAKE_BUILD_TYPE=Release is necessary to install shared libraries
 override_dh_auto_configure:
-	dh_auto_configure
+	dh_auto_configure -- \
+	        -DBUILD_SHARED_LIBS=ON \
+	        -DCMAKE_BUILD_TYPE=Release \
+	        $(NULL)
 	make -C bindings
-	cd bindings/python; sed -i "s/__version__/$(DEB_VERSION_UPSTREAM)/" setup.py
+	cd bindings/python3; sed -i "s/__version__/$(DEB_VERSION_UPSTREAM)/" setup.py
 
-override_dh_auto_build:
-	dh_auto_build
+execute_after_dh_auto_build:
 	cd bindings/perl; perl Makefile.PL \
 	    INSTALL_BASE=$(CURDIR)/debian/libmarisa-perl/usr \
 	    INSTALLARCHLIB=$(CURDIR)/debian/libmarisa-perl$(PERL_VENDOR_ARCH) \
 	    INSTALLSITEARCH=$(CURDIR)/debian/libmarisa-perl$(PERL_VENDOR_ARCH) \
 	    INSTALLVENDORARCH=$(CURDIR)/debian/libmarisa-perl$(PERL_VENDOR_ARCH) \
 	    INC="-I../../include" \
-	    LIBS="-L../../lib/marisa/.libs -lmarisa" \
+	    LIBS="-L../../obj-$(DEB_HOST_GNU_TYPE) -lmarisa" \
 	    CCFLAGS="$(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)" \
 	    LDDLFLAGS="-shared -L/usr/local/lib -fstack-protector $(shell dpkg-buildflags --get LDFLAGS)"
 	# Build for each Python 3 version
-	cd bindings/python; \
+	cd bindings/python3; \
 	    set -ex; for python in $(PYTHON3); do \
 	    $$python setup.py build_ext --include-dirs=../../include \
-	        --library-dirs=../../lib/marisa/.libs; \
+	        --library-dirs=../../obj-$(DEB_HOST_GNU_TYPE); \
 	    done
 	cd bindings/perl; make
 	# extconf.rb needs to exist library when configure
 	cd bindings/ruby; ruby extconf.rb --with-opt-include=../../include \
-	    --with-opt-lib=../../lib/marisa/.libs
+	    --with-opt-lib=../../obj-$(DEB_HOST_GNU_TYPE)
 	# set verbose option for compiling
 	sed -i 's/^V = 0/V = 1/' bindings/ruby/Makefile
 	sed -i 's%^sitearchdir = .*%sitearchdir = $$(exec_prefix)/lib/$(DEB_HOST_MULTIARCH)/ruby/$$(ruby_version)%' bindings/ruby/Makefile
 	cd bindings/ruby; make
 
-override_dh_auto_install:
-	dh_auto_install
-	# Remove .la files
-	rm debian/tmp/usr/lib/*/libmarisa.la
+execute_after_dh_auto_install:
 	# The same for install; note the --install-layout=deb option
-	cd bindings/python; \
+	cd bindings/python3; \
 	    set -ex; for python in $(PYTHON3); do \
 	    $$python setup.py install \
 	        --root=$(CURDIR)/debian/python3-marisa --install-layout=deb; \

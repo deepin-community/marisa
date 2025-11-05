@@ -1,0 +1,137 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Tue, 23 Sep 2025 09:09:53 -0400
+Subject: tests/: Fix double value comparison error on i386
+
+Forwarded: https://github.com/s-yata/marisa-trie/issues/127
+---
+ tests/base-test.cc    | 17 -----------------
+ tests/io-test.cc      | 24 ++++++++++++------------
+ tests/marisa-assert.h |  4 ++++
+ 3 files changed, 16 insertions(+), 29 deletions(-)
+
+diff --git a/tests/base-test.cc b/tests/base-test.cc
+index 2f1cfe8..bb4554d 100644
+--- a/tests/base-test.cc
++++ b/tests/base-test.cc
+@@ -17,22 +17,6 @@ namespace {
+ std::random_device seed_gen;
+ std::mt19937 random_engine(seed_gen());
+ 
+-void TestSwap() {
+-  TEST_START();
+-
+-  int x = 100, y = 200;
+-  std::swap(x, y);
+-  ASSERT(x == 200);
+-  ASSERT(y == 100);
+-
+-  double a = 1.23, b = 2.34;
+-  std::swap(a, b);
+-  ASSERT(a == 2.34);
+-  ASSERT(b == 1.23);
+-
+-  TEST_END();
+-}
+-
+ void TestException() {
+   TEST_START();
+ 
+@@ -333,7 +317,6 @@ void TestAgent() {
+ }  // namespace
+ 
+ int main() try {
+-  TestSwap();
+   TestException();
+   TestKey();
+   TestKeyset();
+diff --git a/tests/io-test.cc b/tests/io-test.cc
+index 668df5a..7381241 100644
+--- a/tests/io-test.cc
++++ b/tests/io-test.cc
+@@ -46,8 +46,8 @@ void TestFilename() {
+ 
+     double values[2];
+     reader.read(values, 2);
+-    ASSERT(values[0] == 3.45);
+-    ASSERT(values[1] == 4.56);
++    ASSERT_DOUBLE_EQ(values[0], 3.45);
++    ASSERT_DOUBLE_EQ(values[1], 4.56);
+ 
+     char byte;
+     EXCEPT(reader.read(&byte), std::runtime_error);
+@@ -65,8 +65,8 @@ void TestFilename() {
+ 
+     const double *values;
+     mapper.map(&values, 2);
+-    ASSERT(values[0] == 3.45);
+-    ASSERT(values[1] == 4.56);
++    ASSERT_DOUBLE_EQ(values[0], 3.45);
++    ASSERT_DOUBLE_EQ(values[1], 4.56);
+ 
+     char byte;
+     EXCEPT(mapper.map(&byte), std::runtime_error);
+@@ -84,8 +84,8 @@ void TestFilename() {
+ 
+     const double *values;
+     mapper.map(&values, 2);
+-    ASSERT(values[0] == 3.45);
+-    ASSERT(values[1] == 4.56);
++    ASSERT_DOUBLE_EQ(values[0], 3.45);
++    ASSERT_DOUBLE_EQ(values[1], 4.56);
+ 
+     char byte;
+     EXCEPT(mapper.map(&byte), std::runtime_error);
+@@ -154,8 +154,8 @@ void TestFd() {
+ 
+     double values[2];
+     reader.read(values, 2);
+-    ASSERT(values[0] == 34.5);
+-    ASSERT(values[1] == 67.8);
++    ASSERT_DOUBLE_EQ(values[0], 34.5);
++    ASSERT_DOUBLE_EQ(values[1], 67.8);
+ 
+     char byte;
+     EXCEPT(reader.read(&byte), std::runtime_error);
+@@ -210,8 +210,8 @@ void TestFile() {
+ 
+     double values[2];
+     reader.read(values, 2);
+-    ASSERT(values[0] == 0.1);
+-    ASSERT(values[1] == 0.2);
++    ASSERT_DOUBLE_EQ(values[0], 0.1);
++    ASSERT_DOUBLE_EQ(values[1], 0.2);
+ 
+     char byte;
+     EXCEPT(reader.read(&byte), std::runtime_error);
+@@ -248,8 +248,8 @@ void TestStream() {
+ 
+     double values[2];
+     reader.read(values, 2);
+-    ASSERT(values[0] == 3.4);
+-    ASSERT(values[1] == 5.6);
++    ASSERT_DOUBLE_EQ(values[0], 3.4);
++    ASSERT_DOUBLE_EQ(values[1], 5.6);
+ 
+     char byte;
+     EXCEPT(reader.read(&byte), std::runtime_error);
+diff --git a/tests/marisa-assert.h b/tests/marisa-assert.h
+index 2aa9152..a2dab4f 100644
+--- a/tests/marisa-assert.h
++++ b/tests/marisa-assert.h
+@@ -3,12 +3,16 @@
+ 
+ #include <cstdlib>
+ #include <iostream>
++#include <cmath>
+ 
+ #define ASSERT(cond)                                                       \
+   (void)((!!(cond)) || ((std::cout << __LINE__ << ": Assertion `" << #cond \
+                                    << "' failed.\n"),                      \
+                         std::exit(-1), 0))
+ 
++#define ASSERT_DOUBLE_EQ(actual, expected)                              \
++    ASSERT(std::abs((actual) - (expected)) < 1e-14)
++
+ #define EXCEPT(code, expected_error_type)                               \
+   try {                                                                 \
+     code;                                                               \

@@ -1,6 +1,5 @@
 0001-Specify-python-module-version-for-litian4py-warning.patch
-0002-Fix-sparc64-support-in-wordsize-checking.patch
-0003-Fix-wordsize-detection-for-riscv64-architecture.patch
-0004-Fix-wordsize-detection-for-x32-architecture.patch
-0005-Add-wordsize-detection-for-LoongArch64.patch
-0006-Add-wordsize-detection-for-sw64.patch
+0002-Do-not-build-legacy-python2-bindings.patch
+0003-CMakeLists.txt-Enforce-global-PIC.patch
+0004-Bump-SOVERSION-to-1.patch
+0005-tests-Fix-double-value-comparison-error-on-i386.patch

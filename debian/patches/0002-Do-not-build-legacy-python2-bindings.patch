@@ -1,0 +1,28 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Tue, 16 Sep 2025 16:46:18 -0400
+Subject: Do not build legacy python2 bindings
+
+See also https://github.com/s-yata/marisa-trie/issues/55
+---
+ bindings/Makefile | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/bindings/Makefile b/bindings/Makefile
+index 8e12ba4..d1f4e2e 100644
+--- a/bindings/Makefile
++++ b/bindings/Makefile
+@@ -5,10 +5,10 @@ swig-perl:
+ 	mv marisa-swig_wrap.cxx perl
+ 	cp marisa-swig.cxx marisa-swig.h perl
+ 
+-swig-python:
+-	swig -Wall -c++ -python -outdir python marisa-swig.i
+-	mv marisa-swig_wrap.cxx python
+-	cp marisa-swig.cxx marisa-swig.h python
++#swig-python:
++#	swig -Wall -c++ -python -outdir python marisa-swig.i
++#	mv marisa-swig_wrap.cxx python
++#	cp marisa-swig.cxx marisa-swig.h python
+ 
+ swig-python3:
+ 	swig -Wall -c++ -python -outdir python3 marisa-swig-python3.i

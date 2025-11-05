@@ -7,30 +7,35 @@ Uploaders:
  Mitsuya Shibata <mty.shibata@gmail.com>,
 Build-Depends:
  chrpath,
+ cmake (>= 3.22),
  debhelper-compat (= 13),
+ dh-sequence-pkgkde-symbolshelper,
  dh-sequence-python3,
  perl,
- pkg-kde-tools,
+ perl-xs-dev,
  python3-all-dev,
+ python3-setuptools,
  ruby,
  ruby-dev,
  swig,
-Standards-Version: 4.6.2
+Standards-Version: 4.7.2
 Rules-Requires-Root: no
 Homepage: https://github.com/s-yata/marisa-trie
 Vcs-Browser: https://salsa.debian.org/input-method-team/marisa
 Vcs-Git: https://salsa.debian.org/input-method-team/marisa.git
+Description: MARISA algorithm implementation library
+ Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
+ and space-efficient trie data structure.
 
 Package: libmarisa-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends:
- libmarisa0 (= ${binary:Version}),
+ libmarisa1 (= ${binary:Version}),
  ${misc:Depends},
 Description: development files for libmarisa
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains the files necessary for compiling programs that
  depend on MARISA.
@@ -40,25 +45,23 @@ Section: perl
 Architecture: any
 Multi-Arch: foreign
 Depends:
- libmarisa0 (= ${binary:Version}),
+ libmarisa1 (= ${binary:Version}),
  ${misc:Depends},
  ${perl:Depends},
  ${shlibs:Depends},
 Description: Perl bindings for MARISA
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains Perl bindings for MARISA.
 
-Package: libmarisa0
+Package: libmarisa1
 Architecture: any
 Multi-Arch: same
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
 Description: C++ library to provide an implementation of MARISA
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains C++ library to provide an implementation of MARISA.
 
@@ -66,12 +69,11 @@ Package: marisa
 Section: utils
 Architecture: any
 Depends:
- libmarisa0 (= ${binary:Version}),
+ libmarisa1 (= ${binary:Version}),
  ${misc:Depends},
  ${shlibs:Depends},
 Description: command line tools for libmarisa
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains command line tools for libmarisa.
 
@@ -79,13 +81,12 @@ Package: python3-marisa
 Section: python
 Architecture: any
 Depends:
- libmarisa0 (= ${binary:Version}),
+ libmarisa1 (= ${binary:Version}),
  ${misc:Depends},
  ${python3:Depends},
  ${shlibs:Depends},
 Description: Python3 bindings for MARISA
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains Python 3 bindings for MARISA.
 
@@ -94,12 +95,11 @@ Section: ruby
 Architecture: any
 Multi-Arch: foreign
 Depends:
- libmarisa0 (= ${binary:Version}),
+ libmarisa1 (= ${binary:Version}),
  ruby (>= ${ruby:Build-Version}),
  ${misc:Depends},
  ${shlibs:Depends},
 Description: Ruby bindings for MARISA
- Matching Algorithm with Recursively Implemented StorAge (MARISA) is a static
- and space-efficient trie data structure.
+ ${source:Extended-Description}
  .
  This package contains Ruby bindings for MARISA.

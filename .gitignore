@@ -1,5 +1,6 @@
 .deps/
 .libs/
+.vscode/
 *.a
 *.app
 *.dll
@@ -16,6 +17,7 @@
 *.out
 *.slo
 *.so
+*~
 Makefile
 Makefile.in
 aclocal.m4
@@ -55,3 +57,5 @@ tools/marisa-dump
 tools/marisa-lookup
 tools/marisa-predictive-search
 tools/marisa-reverse-lookup
+/build/
+/build-*/
