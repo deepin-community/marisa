@@ -1,3 +1,9 @@
+marisa (0.2.6.1-1+deepin20) unstable; urgency=medium
+
+  * Add missing build-dependency python3-setuptools.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Thu, 06 Nov 2025 00:09:29 +0800
+
 marisa (0.2.6.1-1+deepin19) unstable; urgency=medium
 
   * add wordsize detection for sw64.
