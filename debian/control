@@ -12,6 +12,7 @@ Build-Depends:
  perl,
  pkg-kde-tools,
  python3-all-dev,
+ python3-setuptools,
  ruby,
  ruby-dev,
  swig,
